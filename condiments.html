@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <header>
+        <a href="home.html" class="siteTitle">Coffee Order System</a>
+        <nav>
+            <a href="order.html">Order Status</a>
+        </nav>
+    </header>
+    <main>
+        <div class="container2">
+            <h1 class="startScrn">Add the condiment</h1> 
+            <div class="orderGrid2">
+                <button class="btnOrder" onclick="addCondiment('Milk')">Milk</button>
+                <button class="btnOrder" onclick="addCondiment('Mocha')">Mocha</button>
+                <button class="btnOrder" onclick="addCondiment('Soy')">Soy</button>
+                <button class="btnOrder" onclick="addCondiment('Whip')">Whip</button>
+
+            </div>
+        </div>   
+        <div class="myOrder">
+            <h1 class="topDiv">My Order</h1> 
+            <div class="orderGrid3">
+                <button class="btnConfirm" id="selectedBeverage">Placeholder for Selected Beverage</button>
+                <div id="selectedCondiments"></div>
+                <button class="btnConfirm" onclick="confirmOrder()"><a href="finished.html" class="btnText">Confirm Order</a></button>
+            </div>
+        </div>   
+    </main>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Bevarge</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <a href="home.html" class="siteTitle">Coffee Order System</a>
+        <nav>
+            <a href="order.html">Order Status</a>
+        </nav>
+    </header>
+    <main>
+        <div class="beverages">
+            <h1 class="bvgText">Select the beverage</h1> 
+            <div class="orderGrid">
+                <button class="btnStart" onclick="selectBeverage('Dark Roast')"><a class="btnText">Dark Roast</a></button>
+                <button class="btnStart" onclick="selectBeverage('Espresso')"><a class="btnText">Espresso</a></button>
+                <button class="btnStart" onclick="selectBeverage('House Blend')"><a class="btnText">House Blend</a></button>
+                <button class="btnStart" onclick="selectBeverage('Decaf')"><a class="btnText">Decaf</a></button>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>

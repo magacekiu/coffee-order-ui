@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee-order</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="orderProcess.js" defer></script>
+</head>
+<body>
+    <header>
+        <a href="home.html" class="siteTitle">Coffee Order System</a>
+        <nav>
+            <a href="order.html">Order Status</a>
+        </nav>
+    </header>
+    <main>
+        <button class="btn"><a href="beverage.html" class="btnText" id="startOrder">Start Your Order Here</a></button>    </main>
+    <script>
+document.getElementById('startOrder').addEventListener('click', () => {
+  sessionStorage.clear();
+});
+</script>
+</body>
+</html>
