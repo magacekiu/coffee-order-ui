@@ -53,7 +53,7 @@ function confirmOrder() {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      type: order.beverage,
+      beverage: order.beverage,
       condiments: order.condiments
     }),
   })
@@ -107,6 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
     fetchOrders();
   }
 });
-document.getElementById('startOrder').addEventListener('click', () => {
-  sessionStorage.clear();
-});
+if(document.getElementById('startOrder')) {
+  document.getElementById('startOrder').addEventListener('click', () => {
+    sessionStorage.clear();
+  });
+}
+
