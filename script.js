@@ -24,21 +24,26 @@ function addCondiment(condiment) {
 }
 
 function updateOrderDisplay() {
-  document.getElementById('selectedBeverage').innerText = order.beverage;
-  document.getElementById('selectedBeverage').addEventListener('click', () => {
-    order.beverage = '';
-    order.total -= 2; 
-    window.location.href = 'beverage.html'; 
-  });
+  const selectedBeverageElement = document.getElementById('selectedBeverage');
+  if (selectedBeverageElement) {
+    selectedBeverageElement.innerText = order.beverage;
+    selectedBeverageElement.addEventListener('click', () => {
+      order.beverage = '';
+      order.total -= 2; 
+      window.location.href = 'beverage.html'; 
+    });
+  }
   const condimentsContainer = document.getElementById('selectedCondiments');
-  condimentsContainer.innerHTML = ''; 
-  order.condiments.forEach(condiment => {
-    const condimentLabel = document.createElement('label');
-    condimentLabel.classList.add('btnConfirm'); 
-    condimentLabel.innerText = condiment;
-    condimentLabel.addEventListener('click', () => addCondiment(condiment));
-    condimentsContainer.appendChild(condimentLabel);
-  });
+  if (condimentsContainer) {
+    condimentsContainer.innerHTML = ''; 
+    order.condiments.forEach(condiment => {
+      const condimentLabel = document.createElement('label');
+      condimentLabel.classList.add('btnConfirm'); 
+      condimentLabel.innerText = condiment;
+      condimentLabel.addEventListener('click', () => addCondiment(condiment));
+      condimentsContainer.appendChild(condimentLabel);
+    });
+  }
 }
 
 function confirmOrder() {
@@ -54,7 +59,7 @@ function confirmOrder() {
   })
   .then(response => response.json())
   .then(data => {
-    console.log(data);
+    console.log('Order confirmed:', data);
     sessionStorage.setItem('order', JSON.stringify(data));
     window.location.href = 'finished.html';
   })
@@ -65,6 +70,7 @@ function fetchOrders() {
   fetch('https://coffee-order-latest-x2xj.onrender.com/orders')
     .then(response => response.json())
     .then(orders => {
+      console.log('Fetched orders:', orders);
       displayOrders(orders);
     })
     .catch((error) => console.error('Error:', error));
