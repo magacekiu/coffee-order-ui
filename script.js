@@ -42,8 +42,41 @@ function updateOrderDisplay() {
 }
 
 function confirmOrder() {
-  sessionStorage.setItem('order', JSON.stringify(order));
-  window.location.href = 'finished.html'; 
+  fetch('https://coffee-order-latest-x2xj.onrender.com/orders', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      type: order.beverage,
+      condiments: order.condiments
+    }),
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log(data);
+    sessionStorage.setItem('order', JSON.stringify(data));
+    window.location.href = 'finished.html';
+  })
+  .catch((error) => console.error('Error:', error));
+}
+
+function fetchOrders() {
+  fetch('https://coffee-order-latest-x2xj.onrender.com/orders')
+    .then(response => response.json())
+    .then(orders => {
+      displayOrders(orders);
+    })
+    .catch((error) => console.error('Error:', error));
+}
+
+function displayOrders(orders) {
+  const ordersContainer = document.getElementById('ordersContainer');
+  orders.forEach(order => {
+    const orderElement = document.createElement('div');
+    orderElement.innerText = `${order.type} with ${order.condiments.join(', ')}`;
+    ordersContainer.appendChild(orderElement);
+  });
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -62,6 +95,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('finalOrder').innerText = "No order found.";
       document.getElementById('orderTotal').innerText = "$0";
     }
+  }
+
+  if (window.location.pathname.includes('order.html')) {
+    fetchOrders();
   }
 });
 document.getElementById('startOrder').addEventListener('click', () => {
