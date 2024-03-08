@@ -95,11 +95,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (window.location.pathname.includes('finished.html')) {
     const storedOrder = JSON.parse(sessionStorage.getItem('order'));
     if (storedOrder) {
-      document.getElementById('finalOrder').innerText = `${storedOrder.beverage} with ${storedOrder.condiments.join(' and ')}`;
-      document.getElementById('orderTotal').innerText = `$${storedOrder.total}`;
+      document.getElementById('finalOrder').innerText = storedOrder.description;
+      document.getElementById('orderTotal').innerText = `$${storedOrder.cost}`;
+      document.getElementById('orderId').innerText = `Order id: ${storedOrder.id}`;
     } else {
       document.getElementById('finalOrder').innerText = "No order found.";
       document.getElementById('orderTotal').innerText = "$0";
+      document.getElementById('orderId').innerText = "Order id: Not available";
     }
   }
 
