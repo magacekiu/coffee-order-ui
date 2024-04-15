@@ -47,7 +47,7 @@ function updateOrderDisplay() {
 }
 
 function confirmOrder() {
-  fetch('https://coffee-order-latest-x2xj.onrender.com/orders', {
+  fetchWithAuth('/orders', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -57,7 +57,6 @@ function confirmOrder() {
       condiments: order.condiments
     }),
   })
-  .then(response => response.json())
   .then(data => {
     console.log('Order confirmed:', data);
     sessionStorage.setItem('order', JSON.stringify(data));
@@ -67,8 +66,7 @@ function confirmOrder() {
 }
 
 function fetchOrders() {
-  fetch('https://coffee-order-latest-x2xj.onrender.com/orders')
-    .then(response => response.json())
+  fetchWithAuth('/orders')
     .then(orders => {
       console.log('Fetched orders:', orders);
       displayOrders(orders);
@@ -80,7 +78,7 @@ function displayOrders(orders) {
   const ordersContainer = document.getElementById('ordersContainer');
   orders.forEach(order => {
     const orderElement = document.createElement('div');
-    orderElement.innerText = `${order.type} with ${order.condiments.join(', ')}`;
+    orderElement.innerText = `Drink with ${order.condiments.join(', ')}`;
     ordersContainer.appendChild(orderElement);
   });
 }
